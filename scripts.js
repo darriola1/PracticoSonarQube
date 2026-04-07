@@ -1,23 +1,13 @@
 // Variables globales - SonarQube suele detectar esto como problema
-var counter = 0;
-var items = ["uno", "dos", "tres"];
+let counter = 0;
+let items = ["uno", "dos", "tres"];
 
 // Función con complejidad alta - código duplicado
 function processItems() {
-    for (var i = 0; i < items.length; i++) {
-        console.log("Processing item: " + items[i]);
-        
-        // Lógica duplicada deliberadamente
-        if (items[i] === "uno") {
-            counter++;
-            console.log("Incrementado contador a: " + counter);
-        } else if (items[i] === "dos") {
-            counter++;
-            console.log("Incrementado contador a: " + counter);
-        } else {
-            counter++;
-            console.log("Incrementado contador a: " + counter);
-        }
+    for (const element of items) {
+        console.log("Processing item: " + element);
+        counter++;
+        console.log("Incrementado contador a: " + counter);
     }
     
     return counter;
@@ -36,7 +26,7 @@ function evaluateUserInput(input) {
 
 // Manejo inseguro de datos
 function saveUserData() {
-    var userData = document.getElementById("user-data").value;
+    let userData = document.getElementById("user-data").value;
     // Almacenamiento de datos sensibles en localStorage
     localStorage.setItem("userData", userData);
 }
@@ -44,20 +34,12 @@ function saveUserData() {
 // Código con posible bug - comparación incorrecta
 function checkValue(value) {
     // Uso de == en lugar de === (problema de calidad)
-    if (value == 0) {
-        return true;
-    }
-    return false;
+    return value == 0;
 }
 
 // Llamada a funciones al cargar la página
 window.onload = function() {
     processItems();
-    
-    // Definición de variables duplicadas - SonarQube detectará esto
-    var temp = 10;
-    // ...código...
-    var temp = 20; // Redefinición
     
     // Uso de console.log en producción - mala práctica
     console.log("La página se cargó completamente");
